@@ -1,0 +1,32 @@
+{
+  "applications": "*",
+  "changelogDate": "20220127172040",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "staff",
+  "fields": [
+    {
+      "fieldName": "idStaff",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "password",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "not an ignored comment",
+  "jpaMetamodelFiltering": false,
+  "name": "Staff",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "book",
+      "otherEntityRelationshipName": "staff",
+      "relationshipName": "book",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

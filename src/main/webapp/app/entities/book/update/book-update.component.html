@@ -1,0 +1,99 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-book-heading" data-cy="BookCreateUpdateHeading" jhiTranslate="sampleLibraryApp.book.home.createOrEditLabel">
+        Create or edit a Book
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="sampleLibraryApp.book.nameOFBook" for="field_nameOFBook">Name OF Book</label>
+          <input
+            type="text"
+            class="form-control"
+            name="nameOFBook"
+            id="field_nameOFBook"
+            data-cy="nameOFBook"
+            formControlName="nameOFBook"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="sampleLibraryApp.book.authorName" for="field_authorName">Author Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="authorName"
+            id="field_authorName"
+            data-cy="authorName"
+            formControlName="authorName"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="sampleLibraryApp.book.nbOfBooks" for="field_nbOfBooks">Nb Of Books</label>
+          <input type="number" class="form-control" name="nbOfBooks" id="field_nbOfBooks" data-cy="nbOfBooks" formControlName="nbOfBooks" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="sampleLibraryApp.book.isDnNomber" for="field_isDnNomber">Is Dn Nomber</label>
+          <input
+            type="text"
+            class="form-control"
+            name="isDnNomber"
+            id="field_isDnNomber"
+            data-cy="isDnNomber"
+            formControlName="isDnNomber"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="sampleLibraryApp.book.subjectBook" for="field_subjectBook">Subject Book</label>
+          <input
+            type="text"
+            class="form-control"
+            name="subjectBook"
+            id="field_subjectBook"
+            data-cy="subjectBook"
+            formControlName="subjectBook"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="sampleLibraryApp.book.langOfBook" for="field_langOfBook">Lang Of Book</label>
+          <input
+            type="text"
+            class="form-control"
+            name="langOfBook"
+            id="field_langOfBook"
+            data-cy="langOfBook"
+            formControlName="langOfBook"
+          />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

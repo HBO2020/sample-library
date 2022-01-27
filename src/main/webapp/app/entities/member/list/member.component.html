@@ -1,0 +1,76 @@
+<div>
+  <h2 id="page-heading" data-cy="MemberHeading">
+    <span jhiTranslate="sampleLibraryApp.member.home.title">Members</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="sampleLibraryApp.member.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-member"
+        [routerLink]="['/member/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="sampleLibraryApp.member.home.createLabel"> Create a new Member </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="members?.length === 0">
+    <span jhiTranslate="sampleLibraryApp.member.home.notFound">No members found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="members && members.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span jhiTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span jhiTranslate="sampleLibraryApp.member.idMember">Id Member</span></th>
+          <th scope="col"><span jhiTranslate="sampleLibraryApp.member.passwordMember">Password Member</span></th>
+          <th scope="col"><span jhiTranslate="sampleLibraryApp.member.book">Book</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let member of members; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/member', member.id, 'view']">{{ member.id }}</a>
+          </td>
+          <td>{{ member.idMember }}</td>
+          <td>{{ member.passwordMember }}</td>
+          <td>
+            <div *ngIf="member.book">
+              <a [routerLink]="['/book', member.book?.id, 'view']">{{ member.book?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/member', member.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/member', member.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(member)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

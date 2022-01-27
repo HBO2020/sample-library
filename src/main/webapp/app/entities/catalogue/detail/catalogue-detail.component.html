@@ -1,0 +1,43 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="catalogue">
+      <h2 data-cy="catalogueDetailsHeading"><span jhiTranslate="sampleLibraryApp.catalogue.detail.title">Catalogue</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ catalogue.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="sampleLibraryApp.catalogue.nameOfAuthor">Name Of Author</span></dt>
+        <dd>
+          <span>{{ catalogue.nameOfAuthor }}</span>
+        </dd>
+        <dt><span jhiTranslate="sampleLibraryApp.catalogue.nbOfCopies">Nb Of Copies</span></dt>
+        <dd>
+          <span>{{ catalogue.nbOfCopies }}</span>
+        </dd>
+        <dt><span jhiTranslate="sampleLibraryApp.catalogue.book">Book</span></dt>
+        <dd>
+          <span *ngFor="let book of catalogue.books; let last = last">
+            <a [routerLink]="['/book', book?.id, 'view']">{{ book.nameOfBook }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/catalogue', catalogue.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>
