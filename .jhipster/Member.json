@@ -1,0 +1,32 @@
+{
+  "applications": "*",
+  "changelogDate": "20220127172041",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "member",
+  "fields": [
+    {
+      "fieldName": "idMember",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "passwordMember",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Member",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "javadoc": "Another side of the same relationship",
+      "otherEntityName": "book",
+      "otherEntityRelationshipName": "member",
+      "relationshipName": "book",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

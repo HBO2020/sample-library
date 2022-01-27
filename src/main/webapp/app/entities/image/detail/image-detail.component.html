@@ -1,0 +1,49 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="image">
+      <h2 data-cy="imageDetailsHeading"><span jhiTranslate="sampleLibraryApp.image.detail.title">Image</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ image.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="sampleLibraryApp.image.imageBook">Image Book</span></dt>
+        <dd>
+          <div *ngIf="image.imageBook">
+            <a (click)="openFile(image.imageBook, image.imageBookContentType)" jhiTranslate="entity.action.open">open</a>
+            {{ image.imageBookContentType }}, {{ byteSize(image.imageBook) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="sampleLibraryApp.image.imageLibelle">Image Libelle</span></dt>
+        <dd>
+          <span>{{ image.imageLibelle }}</span>
+        </dd>
+        <dt><span jhiTranslate="sampleLibraryApp.image.imageCode">Image Code</span></dt>
+        <dd>
+          <span>{{ image.imageCode }}</span>
+        </dd>
+        <dt><span jhiTranslate="sampleLibraryApp.image.book">Book</span></dt>
+        <dd>
+          <div *ngIf="image.book">
+            <a [routerLink]="['/book', image.book?.id, 'view']">{{ image.book?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/image', image.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

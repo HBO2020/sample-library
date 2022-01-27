@@ -1,0 +1,105 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-image-heading" data-cy="ImageCreateUpdateHeading" jhiTranslate="sampleLibraryApp.image.home.createOrEditLabel">
+        Create or edit a Image
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="sampleLibraryApp.image.imageBook" for="field_imageBook">Image Book</label>
+          <div>
+            <div *ngIf="editForm.get('imageBook')!.value" class="form-text text-danger clearfix">
+              <a
+                class="pull-left"
+                (click)="openFile(editForm.get('imageBook')!.value, editForm.get('imageBookContentType')!.value)"
+                jhiTranslate="entity.action.open"
+                >open</a
+              ><br />
+              <span class="pull-left"
+                >{{ editForm.get('imageBookContentType')!.value }}, {{ byteSize(editForm.get('imageBook')!.value) }}</span
+              >
+              <button
+                type="button"
+                (click)="editForm.patchValue({ imageBook: null }); editForm.patchValue({ imageBookContentType: null })"
+                class="btn btn-secondary btn-xs pull-right"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input
+              type="file"
+              id="file_imageBook"
+              data-cy="imageBook"
+              (change)="setFileData($event, 'imageBook', false)"
+              jhiTranslate="entity.action.addblob"
+            />
+          </div>
+          <input type="hidden" class="form-control" name="imageBook" id="field_imageBook" data-cy="imageBook" formControlName="imageBook" />
+          <input
+            type="hidden"
+            class="form-control"
+            name="imageBookContentType"
+            id="field_imageBookContentType"
+            formControlName="imageBookContentType"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="sampleLibraryApp.image.imageLibelle" for="field_imageLibelle"
+            >Image Libelle</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="imageLibelle"
+            id="field_imageLibelle"
+            data-cy="imageLibelle"
+            formControlName="imageLibelle"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="sampleLibraryApp.image.imageCode" for="field_imageCode">Image Code</label>
+          <input type="number" class="form-control" name="imageCode" id="field_imageCode" data-cy="imageCode" formControlName="imageCode" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="sampleLibraryApp.image.book" for="field_book">Book</label>
+          <select class="form-control" id="field_book" data-cy="book" name="book" formControlName="book">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="bookOption.id === editForm.get('book')!.value?.id ? editForm.get('book')!.value : bookOption"
+              *ngFor="let bookOption of booksSharedCollection; trackBy: trackBookById"
+            >
+              {{ bookOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

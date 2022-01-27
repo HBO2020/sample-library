@@ -1,0 +1,67 @@
+{
+  "applications": "*",
+  "changelogDate": "20220127172039",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "book",
+  "fields": [
+    {
+      "fieldName": "nameOFBook",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "authorName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nbOfBooks",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "isDnNomber",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "subjectBook",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "langOfBook",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Book",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "staff",
+      "otherEntityRelationshipName": "book",
+      "relationshipName": "staff",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "image",
+      "otherEntityRelationshipName": "book",
+      "relationshipName": "image",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "javadoc": "A relationship",
+      "otherEntityName": "member",
+      "otherEntityRelationshipName": "book",
+      "relationshipName": "member",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "catalogue",
+      "otherEntityRelationshipName": "book",
+      "ownerSide": false,
+      "relationshipName": "catalogue",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

@@ -1,0 +1,33 @@
+{
+  "sampleLibraryApp": {
+    "book": {
+      "home": {
+        "title": "Books",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Book",
+        "createOrEditLabel": "Créer ou éditer un Book",
+        "notFound": "Aucun Book trouvé"
+      },
+      "created": "Un nouveau Book a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Book avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Book avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Book {{ id }} ?"
+      },
+      "detail": {
+        "title": "Book"
+      },
+      "id": "ID",
+      "nameOFBook": "Name OF Book",
+      "authorName": "Author Name",
+      "nbOfBooks": "Nb Of Books",
+      "isDnNomber": "Is Dn Nomber",
+      "subjectBook": "Subject Book",
+      "langOfBook": "Lang Of Book",
+      "staff": "Staff",
+      "image": "Image",
+      "member": "Member",
+      "catalogue": "Catalogue"
+    }
+  }
+}

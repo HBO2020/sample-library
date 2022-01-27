@@ -1,0 +1,83 @@
+<div>
+  <h2 id="page-heading" data-cy="ImageHeading">
+    <span jhiTranslate="sampleLibraryApp.image.home.title">Images</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="sampleLibraryApp.image.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-image"
+        [routerLink]="['/image/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="sampleLibraryApp.image.home.createLabel"> Create a new Image </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="images?.length === 0">
+    <span jhiTranslate="sampleLibraryApp.image.home.notFound">No images found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="images && images.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span jhiTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span jhiTranslate="sampleLibraryApp.image.imageBook">Image Book</span></th>
+          <th scope="col"><span jhiTranslate="sampleLibraryApp.image.imageLibelle">Image Libelle</span></th>
+          <th scope="col"><span jhiTranslate="sampleLibraryApp.image.imageCode">Image Code</span></th>
+          <th scope="col"><span jhiTranslate="sampleLibraryApp.image.book">Book</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let image of images; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/image', image.id, 'view']">{{ image.id }}</a>
+          </td>
+          <td>
+            <a *ngIf="image.imageBook" (click)="openFile(image.imageBook, image.imageBookContentType)" jhiTranslate="entity.action.open"
+              >open</a
+            >
+            <span *ngIf="image.imageBook">{{ image.imageBookContentType }}, {{ byteSize(image.imageBook) }}</span>
+          </td>
+          <td>{{ image.imageLibelle }}</td>
+          <td>{{ image.imageCode }}</td>
+          <td>
+            <div *ngIf="image.book">
+              <a [routerLink]="['/book', image.book?.id, 'view']">{{ image.book?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/image', image.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/image', image.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(image)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
